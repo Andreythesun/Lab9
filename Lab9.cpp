@@ -15,10 +15,19 @@ int main() {
     fgets(a, 1000, stdin);
     printf("\nInput the second multiplier:");
 	fgets(b, 1000, stdin); 
+    if (b[0] == '0'){
+        printf("\nError: Division by zero\n"); return 1;
+    }
     int lena = strlen(a) - 1;
     int lenb = strlen(b) - 1;
     int len = lena + lenb + 1;
+    int zero = 0;
     for (int i = 0; i < lena; i++) {
+        if (a[i] == '0' || a[i] == '-') zero++;
+        if (zero == lena) {
+            printf("\n0\n");
+            return 0;
+        }
         if (IsDigits(a[i], m)) {
             printf("\nError: not a digit\n");
             return 1;
@@ -30,7 +39,8 @@ int main() {
             return 1;
         }
     }
-    char* c = charmult(a, b);
+    //char* c = charmult(a, b);
+    char* c = chardiv(a, b);
     printf("\n%s\n", c);
 
 
